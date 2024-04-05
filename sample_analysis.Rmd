@@ -27,3 +27,24 @@ input_path <- file.path(data_path, input_filename)
 songs <- read_csv(input_path)
 glimpse(songs)
 ```
+
+
+```{r set_up_analysis}
+mode_levels <- c('minor','major')
+songs <- songs %>%
+    ## recode 'mode' from 0/1 to minor/major
+    mutate(mode = factor(mode_levels[mode + 1], levels = mode_levels)) %>%
+    ## 
+    mutate(playlist_genre = factor(playlist_genre),
+           playlist_subgenre = factor(playlist_subgenre))
+           
+numeric_vars <-
+    c("track_popularity", "danceability", "energy", "loudness",
+      "speechiness", "acousticness", "instrumentalness", "liveness",
+      "valence", "tempo", "duration_ms")
+factor_vars <- c('mode','playlist_genre','playlist_subgenre')
+
+## print the dimensions of this tibble
+print(dim(songs))
+
+```
