@@ -1,30 +1,29 @@
 ---
-title: "Sample analysis"
-author: "Jeremy Silver"
+title: "Analysing my dataset"
+author: "Newbie Ruser"
 date: "`r Sys.Date()`"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
+```{r knitr_setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+# Getting started
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+```{r setup}
+library(tidyverse)
+library(gt)
+library(broom)
+library(corrr)
+library(performance)
+library(betareg)
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+input_filename <- 'spotify_songs.csv'
+## data_path <- file.path('..','5 data')
+data_path <- '.'
+input_path <- file.path(data_path, input_filename)
 
-```{r cars}
-summary(cars)
+songs <- read_csv(input_path)
+glimpse(songs)
 ```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
